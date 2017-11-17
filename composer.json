@@ -12,7 +12,7 @@
     },
     "autoload": {
         "psr-4": {
-			    "VivaCMS\\Installer": "src/"
+			    "VivaCMS\\Installer\\": "src/"
         }
     },	
     "minimum-stability": "dev",
