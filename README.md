@@ -7,7 +7,7 @@ This package allows to configure DB and Key in new Laravel installations using t
 Require using composer:
 
 ```bash
-composer require alexmaestre/vivacms-installer
+composer require alexmaestre/laravel-configurator
 ```
 ## License
 
