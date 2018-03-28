@@ -87,6 +87,7 @@ class Install extends Command
         fwrite($fp, '<?php return ' . var_export(config($config), true) . ';');
         fclose($fp);
     }
+
 	
     /**
      * Execute the console command.
@@ -122,6 +123,7 @@ class Install extends Command
 	if(!self::checkEnv('DB_PASSWORD','secret')){
 		$changeDB = !$this->confirm("There is already a DB connection data. Do you want to change it?");
 	};
+	
 	if(empty($changeDB)){
 		$connection=false;
 		while(!$connection){
@@ -137,8 +139,7 @@ class Install extends Command
 				if(!$db_conn){
 					$this->error("Defined database user cannot manage this database");
 				}else{
-					self::updateEnv('DB_HOST',$db_host);
-					self::updateConfig('app','url',$db_host);
+					self::updateEnv('DB_HOST',$db_host);					
 					self::updateEnv('DB_DATABASE',$db_name);
 					self::updateEnv('DB_USERNAME',$db_user);
 					self::updateEnv('DB_PASSWORD',$db_pass);	
@@ -147,6 +148,17 @@ class Install extends Command
 				}
 			}
 		}
+	}
+	
+	//Configure Site URL
+	$this->comment(PHP_EOL."Configure site URL");	
+	if(config('app.url') != 'http://localhost') {
+		$changeURL = !$this->confirm("There is already a site URL. Do you want to change it?");
+	}
+	if(empty($changeURL)){
+		$url = $this->ask('Insert your canonical URL');
+		if(!preg_match("@^[hf]tt?ps?://@", $url)) { $url = "http://" . $url; }
+		self::updateEnv('APP_URL',$url);
 	}
 	
 	//Configure app key
