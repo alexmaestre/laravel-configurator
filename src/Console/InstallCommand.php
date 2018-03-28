@@ -1,6 +1,6 @@
 <?php
 
-namespace VivaCMS\Installer\Console;
+namespace LaravelConfigurator\Console;
 
 use Illuminate\Console\Command;
 
@@ -11,14 +11,14 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'vivacms-installer';
+    protected $signature = 'laravel-configurator';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Configures Laravel and installs VivaCMS core';
+    protected $description = 'Configures Laravel from terminal';
 
     /**
      * Create a new command instance.
@@ -88,7 +88,7 @@ class Install extends Command
 	$startTime = microtime(true);
 	
         $this->comment(PHP_EOL."---------------------------------------------");
-        $this->comment("     VivaCMS installer");
+        $this->comment("     Laravel configurator");
         $this->comment("---------------------------------------------");
 	
 	//Prepare permissions
@@ -158,7 +158,7 @@ class Install extends Command
 	//End
 	$endTime = number_format((microtime(true)-$startTime), 2, ',', ' ');
 	$this->comment(PHP_EOL."---------------------------------------------");		
-    $this->comment("     Laravel has being configured");
+    $this->comment("     Laravel has been configured");
 	$this->comment("     Installation time: ".$endTime." secs");
 	$this->comment("---------------------------------------------".PHP_EOL);
     }
