@@ -30,11 +30,11 @@ class Install extends Command
         parent::__construct();
     }
 	
-	/** 
-	* Check parameter in .env file
-	*
-	* @return boolean
-	*/
+   /** 
+   * Check parameter in .env file
+   *
+   * @return boolean
+   */
     private static function checkEnv($parameter,$value = null)
     {
 		$env = fopen('.env','r+');
@@ -55,11 +55,11 @@ class Install extends Command
 		return $return;
     }	
 
-	/** 
-	* Update .env file value
-	*
-	* @return boolean
-	*/
+   /** 
+   * Update .env file value
+   *
+   * @return boolean
+   */
     private static function updateEnv($parameter,$value)
     {
 		$env = fopen('.env','r+');
@@ -76,6 +76,16 @@ class Install extends Command
 		file_put_contents('.env',$newEnv);
 		fclose($env); 
 		return $changed;
+    }
+
+    /**
+     * Modify config file
+     */
+    private static function updateConfig($config,$key,$value){
+        config([$config.'.'.$key => $value]);
+        $fp = fopen(base_path() .'/config/'.$config.'.php' , 'w');
+        fwrite($fp, '<?php return ' . var_export(config($config), true) . ';');
+        fclose($fp);
     }
 	
     /**
@@ -128,6 +138,7 @@ class Install extends Command
 					$this->error("Defined database user cannot manage this database");
 				}else{
 					self::updateEnv('DB_HOST',$db_host);
+					self::updateConfig('app','url',$db_host);
 					self::updateEnv('DB_DATABASE',$db_name);
 					self::updateEnv('DB_USERNAME',$db_user);
 					self::updateEnv('DB_PASSWORD',$db_pass);	
