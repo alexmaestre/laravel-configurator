@@ -1,6 +1,6 @@
 {
-    "name": "alexmaestre/vivacms-installer",
-    "description": "VivaCMS insllater package",
+    "name": "alexmaestre/laravel-configurator",
+    "description": "This package allows to configure DB and Key in new Laravel installations using terminal.",
     "authors": [
         {
             "name": "Alex Maestre",
@@ -12,14 +12,14 @@
     },
     "autoload": {
         "psr-4": {
-			    "VivaCMS\\Installer\\": "src/"
+		"LaravelConfigurator\\": "src/"
         }
     },	
     "minimum-stability": "dev",
     "extra": {
         "laravel": {
             "providers": [
-		          "VivaCMS\\Installer\\Providers\\VivaCMSInstallerServiceProvider"
+		          "LaravelConfigurator\\Providers\\LaravelConfiguratorServiceProvider"
             ]
         }
     }	
