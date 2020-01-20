@@ -115,6 +115,8 @@ class Install extends Command
 		}
 		exec("cp .env.example .env");
 		$this->comment(PHP_EOL."Creating .env file");	
+		$this->info("Configuring file as default session driver");
+		$this->updateEnv("SESSION_DRIVER","file");
 		$this->info("Done");
 	};
 			
