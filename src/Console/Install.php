@@ -122,7 +122,7 @@ class Install extends Command
 			
 	//Configure database connection
 	$this->comment(PHP_EOL."Configure database connection");	
-	if(!self::checkEnv('DB_PASSWORD','secret')){
+	if(!self::checkEnv('DB_PASSWORD','')){
 		$changeDB = !$this->confirm("There is already a DB connection data. Do you want to change it?");
 	};
 	
