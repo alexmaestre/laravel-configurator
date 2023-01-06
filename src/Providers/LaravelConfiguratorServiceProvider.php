@@ -8,7 +8,7 @@ class LaravelConfiguratorServiceProvider extends ServiceProvider
 
     protected $namespace;
 	
-    protected $commands = ['LaravelConfigurator\Console\Install'];	
+    protected $commands = ['LaravelConfigurator\Console\InstallCommand'];	
 	
     public function register(){
         $this->commands($this->commands);
