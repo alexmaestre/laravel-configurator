@@ -125,8 +125,8 @@ class InstallCommand extends Command
 	//Prepare env file
 	if(!file_exists('.env')){ 
             if(!file_exists('.env.example')){
-                    $this->error("Fatal error, there isn't .env example file. Please download it or create .env file manually.");
-                    die();
+                $this->error("Fatal error, there isn't .env example file. Please download it or create .env file manually.");
+                die();
             }
             exec("cp .env.example .env");
             $this->comment(PHP_EOL."Creating .env file");	
@@ -138,7 +138,7 @@ class InstallCommand extends Command
 	//Configure database connection
 	$this->comment(PHP_EOL."Configure database connection");	
 	if(!self::checkEnv('DB_PASSWORD','')){
-		$changeDB = !$this->confirm("There is already a DB connection data. Do you want to change it?");
+            $changeDB = !$this->confirm("There is already a DB connection data. Do you want to change it?");
 	};
 	
 	if(empty($changeDB)){
@@ -193,14 +193,7 @@ class InstallCommand extends Command
                 $this->call('key:generate');
                 $this->info("New key has been generated");
             }
-	}
-        
-        //Configure Laravel Passport Usage
-        $this->comment(PHP_EOL."Configure Laravel Passport Usage");
-        if($this->confirm("Do you want to use Laravel Passport in your project?",true)){
-            $this->updateConfigFile('auth',"guards.api.driver","passport");
-            $this->updateConfigFile('auth',"guards.api.provider","users");      
-        }          
+	}     
         
 	//Configure Site language
 	$this->comment(PHP_EOL."Configure site language");	       
