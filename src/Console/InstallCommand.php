@@ -4,7 +4,7 @@ namespace LaravelConfigurator\Console;
 
 use Illuminate\Console\Command;
 
-class Install extends Command
+class InstallCommand extends Command
 {
     /**
      * The name and signature of the console command.
