@@ -176,6 +176,7 @@ class InstallCommand extends Command
             $url = $this->ask('Insert your canonical URL');
             if(!preg_match("@^[hf]tt?ps?://@", $url)) { $url = "http://" . $url; }
             self::updateEnv('APP_URL',$url);
+	    $this->updateConfigFile('app','url',$url);
 	}
 	
 	//Configure app key
