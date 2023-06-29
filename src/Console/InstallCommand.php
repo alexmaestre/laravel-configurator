@@ -218,14 +218,14 @@ class InstallCommand extends Command
         //Configure App Name
         $this->comment(PHP_EOL."Configure App Name");
 	$appName = $this->ask('Select App name','VivaCMS');
-	self::updateEnv('APP_NAME',$appName);
+	self::updateEnv('APP_NAME','"'.$appName.'"');
 	    
         //Configure mail
         $this->comment(PHP_EOL."Configure Mail");
 	$mailFromAddress = $this->ask('Select email from adress','info@'.config('app.url'));
 	self::updateEnv('MAIL_FROM_ADDRESS',$mailFromAddress);
 	$mailFromName = $this->ask('Select email from name',$appName);
-	self::updateEnv('MAIL_FROM_NAME',$mailFromName);
+	self::updateEnv('MAIL_FROM_NAME','"'.$mailFromName.'"');
 	    
 	//End
 	$endTime = number_format((microtime(true)-$startTime), 2, ',', ' ');
